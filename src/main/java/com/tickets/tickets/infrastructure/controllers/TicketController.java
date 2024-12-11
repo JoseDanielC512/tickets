@@ -1,4 +1,4 @@
-package com.tickets.tickets.application;
+package com.tickets.tickets.infrastructure.controllers;
 
 import com.tickets.tickets.domain.model.Ticket;
 import com.tickets.tickets.domain.ports.input.TicketUseCase;
