@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    image: openjdk:17-jdk-slim
+    container_name: spring_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/ticketsdb
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ticketsdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
